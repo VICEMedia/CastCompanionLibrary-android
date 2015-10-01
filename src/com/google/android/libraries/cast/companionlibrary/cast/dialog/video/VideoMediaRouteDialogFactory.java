@@ -16,7 +16,11 @@
 
 package com.google.android.libraries.cast.companionlibrary.cast.dialog.video;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.MediaRouteDialogFactory;
+import android.util.Log;
+
+import com.google.android.libraries.cast.companionlibrary.cast.CustomMediaRouteChooserDialogFragment;
 
 /**
  * A factory for the MediaRoute Dialog.
@@ -26,6 +30,13 @@ public class VideoMediaRouteDialogFactory extends MediaRouteDialogFactory {
     @Override
     public VideoMediaRouteControllerDialogFragment onCreateControllerDialogFragment() {
         return new VideoMediaRouteControllerDialogFragment();
+    }
+
+    @Override
+    @NonNull
+    public CustomMediaRouteChooserDialogFragment onCreateChooserDialogFragment() {
+        Log.d("CustomizeChooser", "CustomMediaRouteChooserDialogFragment");
+        return new CustomMediaRouteChooserDialogFragment();
     }
 
 }
