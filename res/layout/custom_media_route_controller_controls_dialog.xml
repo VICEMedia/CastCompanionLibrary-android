@@ -77,7 +77,7 @@
             android:layout_toLeftOf="@+id/playPauseView"
             android:layout_toRightOf="@+id/iconContainer"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="3"
             android:textColor="@color/ccl_mr_custom_line_1"
             android:textSize="15sp"/>
 
