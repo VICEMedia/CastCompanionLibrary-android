@@ -36,7 +36,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.MediaRouteControllerDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -193,7 +195,9 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
         mFetchBitmap.execute(mIconUri);
     }
 
+    int mediaState;
     private void updatePlayPauseState(int state) {
+        mediaState = state;
         if (mPausePlay != null) {
             switch (state) {
                 case MediaStatus.PLAYER_STATE_PLAYING:
@@ -231,8 +235,17 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
                     }
                     break;
                 case MediaStatus.PLAYER_STATE_BUFFERING:
-                    adjustControlsVisibility(false);
-                    break;
+                    Handler handler = new Handler();
+                    Log.d("CustomizeChooser", "buffering");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("CustomizeChooser", "PostDelayed buffering");
+                            if (mediaState == MediaStatus.PLAYER_STATE_BUFFERING) {
+                                adjustControlsVisibility(false);
+                            }
+                        }
+                    }, 400);                    break;
                 default:
                     mPausePlay.setVisibility(View.INVISIBLE);
                     setLoadingVisibility(false);
@@ -288,7 +301,17 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
                     return;
                 }
                 try {
-                    adjustControlsVisibility(false);
+                    Handler handler = new Handler();
+                    Log.d("CustomizeChooser", "buffering");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("CustomizeChooser", "PostDelayed buffering");
+                            if (mediaState == MediaStatus.PLAYER_STATE_BUFFERING) {
+                                adjustControlsVisibility(false);
+                            }
+                        }
+                    }, 400);
                     mCastManager.togglePlayback();
                 } catch (CastException e) {
                     adjustControlsVisibility(true);
