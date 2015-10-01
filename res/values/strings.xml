@@ -39,7 +39,7 @@
     <string name="ccl_loading">Loading&#8230;</string>
 
     <!-- Used in Router Controller Dialog -->
-    <string name="ccl_no_media_info">Redy to cast videos from this app</string>
+    <string name="ccl_no_media_info">Ready to cast videos from this app</string>
 
     <!-- onApplicationConnectionFailed() errors -->
     <string name="ccl_failed_to_launch_app">Failed to launch application</string>
