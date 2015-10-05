@@ -31,6 +31,7 @@ import com.google.android.libraries.cast.companionlibrary.utils.FetchBitmapTask;
 import com.google.android.libraries.cast.companionlibrary.utils.LogUtils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -39,10 +40,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.MediaRouteControllerDialog;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -73,6 +79,7 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
     private FetchBitmapTask mFetchBitmap;
 
     private int mStreamType;
+    Context context;
 
     public VideoMediaRouteControllerDialog(Context context, int theme) {
         super(context, theme);
@@ -83,6 +90,7 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
      */
     public VideoMediaRouteControllerDialog(Context context) {
         super(context, R.style.CCLCastDialog);
+        this.context = context;
         try {
             this.mContext = context;
             mCastManager = VideoCastManager.getInstance();
@@ -117,6 +125,37 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
         } catch (IllegalStateException e) {
             LOGE(TAG, "Failed to update the content of dialog", e);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Resources r = context.getResources();
+        int px = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 160, r.getDisplayMetrics());
+        int topMargin = -(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, r.getDisplayMetrics());
+
+        ((LinearLayout.LayoutParams)findViewById(R.id.buttons).getLayoutParams()).leftMargin = px;
+        ((LinearLayout.LayoutParams)findViewById(R.id.buttons).getLayoutParams()).topMargin = topMargin;
+
+
+        int titleIconHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 36, r.getDisplayMetrics());
+        ImageView titleIcon = new ImageView(context);
+        titleIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_cast_dark));
+        LinearLayout.LayoutParams titleIconParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, titleIconHeight);
+        titleIconParams.leftMargin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, r.getDisplayMetrics());
+        titleIconParams.rightMargin = -(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, r.getDisplayMetrics());
+        titleIconParams.weight = .1f;
+        titleIconParams.gravity = Gravity.CENTER_VERTICAL;
+
+        ((LinearLayout) findViewById(R.id.title_bar)).addView(titleIcon, 0, titleIconParams);
+
+
+        ((RelativeLayout.LayoutParams)mIcon.getLayoutParams()).leftMargin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, r.getDisplayMetrics());
+        ((RelativeLayout.LayoutParams)mIcon.getLayoutParams()).height = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, r.getDisplayMetrics());
+        ((RelativeLayout.LayoutParams)mIcon.getLayoutParams()).width = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, r.getDisplayMetrics());
+
+        ((RelativeLayout.LayoutParams)mPausePlay.getLayoutParams()).height = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, r.getDisplayMetrics());
+        ((RelativeLayout.LayoutParams)mPausePlay.getLayoutParams()).addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
     }
 
     @Override
