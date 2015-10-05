@@ -310,7 +310,7 @@ public class VideoCastNotificationService extends Service {
 
         NotificationCompat.Builder builder
                 = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_stat_action_notification)
+                .setSmallIcon(R.drawable.vice_notification)
                 .setContentTitle(metadata.getString(MediaMetadata.KEY_TITLE))
                 .setContentText(castingTo)
                 .setContentIntent(contentPendingIntent)
