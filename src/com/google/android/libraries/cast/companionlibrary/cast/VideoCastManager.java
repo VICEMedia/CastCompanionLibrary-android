@@ -2268,14 +2268,16 @@ public class VideoCastManager extends BaseCastManager
             new FetchBitmapTask() {
                 @Override
                 protected void onPostExecute(Bitmap bitmap) {
-                    MediaMetadataCompat currentMetadata = mMediaSessionCompat.getController()
-                            .getMetadata();
-                    MediaMetadataCompat.Builder newBuilder = currentMetadata == null
-                            ? new MediaMetadataCompat.Builder()
-                            : new MediaMetadataCompat.Builder(currentMetadata);
-                    mMediaSessionCompat.setMetadata(newBuilder
-                            .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap)
-                            .build());
+                    if (mMediaSessionCompat != null) {
+                        MediaMetadataCompat currentMetadata = mMediaSessionCompat.getController()
+                                .getMetadata();
+                        MediaMetadataCompat.Builder newBuilder = currentMetadata == null
+                                ? new MediaMetadataCompat.Builder()
+                                : new MediaMetadataCompat.Builder(currentMetadata);
+                        mMediaSessionCompat.setMetadata(newBuilder
+                                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap)
+                                .build());
+                    }
                 }
             }.execute(imgUrl);
         }
