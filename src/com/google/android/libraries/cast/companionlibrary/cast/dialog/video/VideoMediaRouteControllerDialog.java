@@ -130,32 +130,38 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Resources r = context.getResources();
-        int px = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 160, r.getDisplayMetrics());
-        int topMargin = -(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, r.getDisplayMetrics());
+        int px = dpToPx(160);
+        int topMargin = -dpToPx(16);
 
-        ((LinearLayout.LayoutParams)findViewById(R.id.buttons).getLayoutParams()).leftMargin = px;
-        ((LinearLayout.LayoutParams)findViewById(R.id.buttons).getLayoutParams()).topMargin = topMargin;
+        LinearLayout.LayoutParams buttonsLayoutParams = ((LinearLayout.LayoutParams)findViewById(R.id.buttons).getLayoutParams());
+        buttonsLayoutParams.leftMargin = px;
+        buttonsLayoutParams.topMargin = topMargin;
 
 
-        int titleIconHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 36, r.getDisplayMetrics());
+        int titleIconHeight = dpToPx(36);
         ImageView titleIcon = new ImageView(context);
         titleIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_cast_dark));
         LinearLayout.LayoutParams titleIconParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, titleIconHeight);
-        titleIconParams.leftMargin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, r.getDisplayMetrics());
-        titleIconParams.rightMargin = -(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, r.getDisplayMetrics());
+        titleIconParams.leftMargin = dpToPx(24);
+        titleIconParams.rightMargin = -dpToPx(20);
         titleIconParams.weight = .1f;
         titleIconParams.gravity = Gravity.CENTER_VERTICAL;
 
         ((LinearLayout) findViewById(R.id.title_bar)).addView(titleIcon, 0, titleIconParams);
 
+        RelativeLayout.LayoutParams iconLayoutParams = ((RelativeLayout.LayoutParams)mIcon.getLayoutParams());
+        iconLayoutParams.leftMargin = dpToPx(18);
+        iconLayoutParams.height = dpToPx(56);
+        iconLayoutParams.width = dpToPx(56);
 
-        ((RelativeLayout.LayoutParams)mIcon.getLayoutParams()).leftMargin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, r.getDisplayMetrics());
-        ((RelativeLayout.LayoutParams)mIcon.getLayoutParams()).height = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, r.getDisplayMetrics());
-        ((RelativeLayout.LayoutParams)mIcon.getLayoutParams()).width = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, r.getDisplayMetrics());
+        RelativeLayout.LayoutParams pausePlayLayoutParams = ((RelativeLayout.LayoutParams)mPausePlay.getLayoutParams());
+        pausePlayLayoutParams.height = dpToPx(48);
+        pausePlayLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+    }
 
-        ((RelativeLayout.LayoutParams)mPausePlay.getLayoutParams()).height = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, r.getDisplayMetrics());
-        ((RelativeLayout.LayoutParams)mPausePlay.getLayoutParams()).addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+    public int dpToPx(int dp){
+        Resources r = context.getResources();
+        return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
     }
 
     @Override
