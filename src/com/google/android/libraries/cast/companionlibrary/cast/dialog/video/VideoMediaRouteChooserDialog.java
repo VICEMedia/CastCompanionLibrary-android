@@ -26,6 +26,6 @@ public class VideoMediaRouteChooserDialog extends MediaRouteChooserDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON,
-                R.drawable.ic_cast_dark);
+                R.drawable.ic_cast_white_24dp);
     }
 }
