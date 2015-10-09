@@ -132,7 +132,7 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int px = dpToPx(160);
-        int topMargin = -dpToPx(16);
+        int topMargin = -dpToPx(8);
 
         LinearLayout.LayoutParams buttonsLayoutParams = ((LinearLayout.LayoutParams)findViewById(R.id.buttons).getLayoutParams());
         buttonsLayoutParams.leftMargin = px;
