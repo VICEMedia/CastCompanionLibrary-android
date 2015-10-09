@@ -45,6 +45,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -148,6 +149,10 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
         titleIconParams.gravity = Gravity.CENTER_VERTICAL;
 
         ((LinearLayout) findViewById(R.id.title_bar)).addView(titleIcon, 0, titleIconParams);
+
+        ((TextView)findViewById(R.id.route_name)).setSingleLine(false);
+        ((TextView)findViewById(R.id.route_name)).setMaxLines(2);
+        ((Button)findViewById(R.id.stop)).setText(context.getResources().getString(R.string.mr_media_route_controller_disconnect));
 
         RelativeLayout.LayoutParams iconLayoutParams = ((RelativeLayout.LayoutParams)mIcon.getLayoutParams());
         iconLayoutParams.leftMargin = dpToPx(18);
