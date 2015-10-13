@@ -64,7 +64,6 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
     private ImageView mIcon;
     private ImageView mPausePlay;
     private TextView mTitle;
-    private TextView mSubTitle;
     private TextView mEmptyText;
     private ProgressBar mLoading;
     private Uri mIconUri;
@@ -160,7 +159,7 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
         iconLayoutParams.width = dpToPx(56);
 
         RelativeLayout.LayoutParams pausePlayLayoutParams = ((RelativeLayout.LayoutParams)mPausePlay.getLayoutParams());
-        pausePlayLayoutParams.height = dpToPx(48);
+        pausePlayLayoutParams.height = dpToPx(56);
         pausePlayLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
     }
 
@@ -213,7 +212,6 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
         hideControls(false, 0);
         MediaMetadata mm = info.getMetadata();
         mTitle.setText(mm.getString(MediaMetadata.KEY_TITLE));
-        mSubTitle.setText(mm.getString(MediaMetadata.KEY_SUBTITLE));
         setIcon(mm.hasImages() ? mm.getImages().get(0).getUrl() : null);
     }
 
@@ -410,7 +408,6 @@ public class VideoMediaRouteControllerDialog extends MediaRouteControllerDialog 
         mTextContainer = controls.findViewById(R.id.textContainer);
         mPausePlay = (ImageView) controls.findViewById(R.id.playPauseView);
         mTitle = (TextView) controls.findViewById(R.id.titleView);
-        mSubTitle = (TextView) controls.findViewById(R.id.subTitleView);
         mLoading = (ProgressBar) controls.findViewById(R.id.loadingView);
         mEmptyText = (TextView) controls.findViewById(R.id.emptyView);
     }
