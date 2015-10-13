@@ -32,9 +32,9 @@ public class VideoMediaRouteDialogFactory extends MediaRouteDialogFactory {
 
     @Override
     @NonNull
-    public CustomMediaRouteChooserDialogFragment onCreateChooserDialogFragment() {
+    public VideoMediaRouteChooserDialogFragment onCreateChooserDialogFragment() {
         Log.d("CustomizeChooser", "CustomMediaRouteChooserDialogFragment");
-        return new CustomMediaRouteChooserDialogFragment();
+        return new VideoMediaRouteChooserDialogFragment();
     }
 
 }
