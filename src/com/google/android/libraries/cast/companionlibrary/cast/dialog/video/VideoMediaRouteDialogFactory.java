@@ -20,8 +20,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.MediaRouteDialogFactory;
 import android.util.Log;
 
-import com.google.android.libraries.cast.companionlibrary.cast.CustomMediaRouteChooserDialogFragment;
-
 /**
  * A factory for the MediaRoute Dialog.
  */

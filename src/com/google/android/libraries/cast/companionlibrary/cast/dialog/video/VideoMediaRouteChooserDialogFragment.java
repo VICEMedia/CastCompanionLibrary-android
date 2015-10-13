@@ -6,6 +6,8 @@ import android.support.v7.app.MediaRouteChooserDialog;
 import android.support.v7.app.MediaRouteChooserDialogFragment;
 import android.util.Log;
 
+import com.google.android.libraries.cast.companionlibrary.cast.dialog.video.VideoMediaRouteChooserDialog;
+
 /**
  * Created by oliverbudiardjo on 10/1/15.
  */
@@ -16,6 +18,6 @@ public class VideoMediaRouteChooserDialogFragment extends MediaRouteChooserDialo
             Context context, Bundle savedInstanceState) {
         Log.d("CustomizeChooser", "MediaRouteChooserDialog set Theme");
         context.setTheme(android.R.style.Theme_Material);
-        return new MediaRouteChooserDialog(context);
+        return new VideoMediaRouteChooserDialog(context);
     }
 }
